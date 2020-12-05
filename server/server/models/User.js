@@ -1,14 +1,32 @@
-var mongoose = require('mongoose');
+ var mongoose = require('mongoose');
+ var Schema = mongoose.Schema;
 
-const UserSchema = new mongoose.Schema({
-    userFirstName : String,
-    userLastName : String,
-    userEmail  : String,  //unique
-    userPhoneNumber : Number,
-    userProfileImage : { data: Buffer, contentType: String }
-}, {
-    timestamps: true
-})
-
-
-module.exports = mongoose.Schema(UserSchema);
+ var UserSchema = new Schema({
+    userFirstName : {
+        type: String,
+        unique : false,
+        required : true
+    },
+    userLastName : {
+        type: String,
+        unique : false,
+        required : true
+    },
+    userEmail  : {
+        type: String,
+        unique : true,
+        required : true
+    },  //unique
+    userPhoneNumber : {
+        type: Number,
+        unique : false,
+        required : true
+    },
+    userProfileImage : {
+        type: String, 
+        unique : false,
+        required : false }
+ }, 
+ {collection: 'Users'})
+            
+ module.exports = UserSchema;
