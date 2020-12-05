@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const dbConfig = require('./config/db.config.js');
 var mongoose = require('mongoose');
 
 var app = express();
@@ -13,12 +14,16 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/ArkeneaUsers', { useNewUrlParser: true, useUnifiedTopology : true })
+mongoose.connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology : true })
 .then(
   (success) => { console.log('Connected to Database '); },
   (error) => { console.log('Error Occurred while connecting to DB : ' + error);}
-);
+).catch(err => {
+  console.log('Could not connect to the database. Exiting now...', err);
+  process.exit(); 
+});
 
 
 app.use(logger('dev'));
