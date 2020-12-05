@@ -1,33 +1,39 @@
 <div class="example-container">
+  <form [formGroup] = "userDataForm" (ngSubmit)="onSubmit()"> 
     <mat-form-field appearance="fill">
       <mat-label>First Name</mat-label>
-      <input matInput>
+      <input matInput name="userFirstName">
     </mat-form-field>
     <br>
 
     <mat-form-field appearance="fill">
         <mat-label>Last Name</mat-label>
-        <input matInput>
+        <input matInput name="userLastName">
       </mat-form-field>
       <br>
 
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput>
+        <input matInput name="userEmail">
       </mat-form-field>
       <br>
 
       <mat-form-field appearance="fill">
         <mat-label>Phone Number</mat-label>
-        <input matInput>
+        <input matInput name="userPhoneNumber">
       </mat-form-field>
       <br>
 
 
       <mat-form-field appearance="fill">
         <mat-label>Profile Image</mat-label>
-        <input matInput>
+        <input matInput name="userProfileImage">
       </mat-form-field>
       <br>
+
+      <button mat-raised-button type="submit" color="primary">
+        Upload
+    </button>
+      </form>
   </div>
   
